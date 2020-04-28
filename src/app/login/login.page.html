@@ -1,9 +1,134 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>login</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
-
+  <ion-grid>
+    <ion-row>
+      <ion-col text-center>
+        <form [formGroup]="registrationForm" (ngSubmit)="submit()">
+          <div text-center>
+            <h3>Welcome!</h3>
+          </div>
+          <ion-list>
+            <ion-item>
+              <ion-input
+                inputmode="email"
+                formControlName="email"
+                placeholder="your@mail.com"
+              ></ion-input>
+            </ion-item>
+            <div *ngFor="let error of errorMessages.email">
+              <ng-container
+                *ngIf="email.hasError(error.type) && (email.dirty || email.touched)"
+              >
+                <small class="error-message">{{error.message}}</small>
+              </ng-container>
+            </div>
+            <ion-item>
+              <ion-input
+                formControlName="password"
+                placeholder="Password"
+              ></ion-input>
+            </ion-item>
+            <div *ngFor="let error of errorMessages.password">
+              <ng-container
+                *ngIf="password.hasError(error.type) && (password.dirty || password.touched)"
+              >
+                <small class="error-message">{{error.message}}</small>
+              </ng-container>
+            </div>
+          </ion-list>
+          <ion-button
+            [disabled]="!registrationForm.valid"
+            type="submit"
+            expand="block"
+            (click)="goToHome()"
+            >Login
+          </ion-button>
+          <ion-button (click)="goToRegister()" expand="block"
+            >Register</ion-button
+          >
+        </form>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
+
+<!-- <form [formGroup]="registrationForm" (ngSubmit)="submit()">
+  <div text-center>
+    <h3>Welcome!</h3>
+  </div>
+  <ion-list>
+    <ion-item>
+      <ion-input
+        inputmode="email"
+        formControlName="email"
+        placeholder="your@mail.com"
+      ></ion-input>
+    </ion-item>
+    <div *ngFor="let error of errorMessages.email">
+      <ng-container
+        *ngIf="email.hasError(error.type) && (email.dirty || email.touched)"
+      >
+        <small class="error-message">{{error.message}}</small>
+      </ng-container>
+    </div>
+    <ion-item>
+      <ion-input formControlName="password" placeholder="Password"></ion-input>
+    </ion-item>
+    <div *ngFor="let error of errorMessages.password">
+      <ng-container
+        *ngIf="password.hasError(error.type) && (password.dirty || password.touched)"
+      >
+        <small class="error-message">{{error.message}}</small>
+      </ng-container>
+    </div>
+  </ion-list>
+  <ion-button
+    [disabled]="!registrationForm.valid"
+    type="submit"
+    expand="block"
+    (click)="goToHome()"
+    >Login
+  </ion-button>
+  <ion-button (click)="goToRegister()" expand="block">Register</ion-button>
+</form> -->
+
+<!-- <ion-content>
+  <form #form="ngForm">
+    <ion-grid class="ion-justify-content-center">
+      <ion-row justify-content-center>
+        <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
+          <div text-center>
+            <h3>Welcome!</h3>
+          </div>
+          <div padding>
+            <ion-item>
+              <ion-input
+                name="email"
+                type="email"
+                placeholder="your@email.com"
+                ngModel
+                required
+              ></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input
+                name="password"
+                type="password"
+                placeholder="Password"
+                ngModel
+                required
+              ></ion-input>
+            </ion-item>
+          </div>
+          <div padding>
+            <ion-button expand="block" (click)="goToHome()">Login</ion-button>
+          </div>
+          <div padding>
+            <ion-button expand="block" (click)="goToRegister()"
+              >Register</ion-button
+            >
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+</ion-content> -->

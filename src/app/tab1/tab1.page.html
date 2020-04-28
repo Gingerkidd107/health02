@@ -1,15 +1,37 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-     Fitness 
+     Fitness
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Fitness</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Today's Workout: Arms</ion-card-title>
+      <ion-card-subtitle>Expected Total Time: 40 minutes</ion-card-subtitle>
+    </ion-card-header>
+  <ion-card (click)="expandItem(item)" *ngFor="let item of items">
+    <ion-card-header>
+      <ion-card-title>Exercise #{{item.number}}: {{item.name}}</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <app-expandable expandHeight="300px" [expanded]="item.expanded">
+        <p>
+          {{item.sets}} sets of {{item.reps}}
+        </p>
+        <p>
+          Rest for {{item.rest}} seconds between sets
+        </p>
+        <p>
+            <img [src]="item.ani" [alt]="test1" [height]=100/>
+        </p>
+      </app-expandable>
+    </ion-card-content>
+  </ion-card>
+</ion-card>
+
+
 </ion-content>
